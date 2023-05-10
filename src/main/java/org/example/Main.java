@@ -11,10 +11,15 @@ import java.net.Socket;
 public class Main {
     private static final int port = 8989;
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
 
         Categories.readFile();
         Categories categories = new Categories();
+        File file = new File("data.bin");
+        file.createNewFile();
+        if (file.length() > 0) {
+            categories = Categories.loadFromBinFile(file);
+        }
         try (ServerSocket serverSocket = new ServerSocket(port);) {
             String json;
             while (true) {
@@ -37,6 +42,7 @@ public class Main {
 
                     json = categories.maxCategory(data);
                     out.println(json);
+                    categories.saveBin(file);
                 } catch (IOException e) {
                     System.out.println("Не могу стартовать сервер");
                     throw new RuntimeException(e);
