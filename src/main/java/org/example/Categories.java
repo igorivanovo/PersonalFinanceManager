@@ -15,6 +15,14 @@ public class Categories implements Serializable {
 
     }
 
+    public static String[] getCategoryes() {
+        return categoryes;
+    }
+
+    public int[][][][] getCategoryProduct() {
+        return categoryProduct;
+    }
+
     public static void readFile() throws IOException {
         Set<String> categor = new HashSet<>();
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader("categories.tsv"))) {
