@@ -11,7 +11,7 @@ import java.net.Socket;
 public class Main {
     private static final int port = 8989;
 
-    public static void main(String[] args) throws IOException, ClassNotFoundException {
+    public static void main(String[] args) throws IOException {
 
         Categories.readFile();
         Categories categories = new Categories();
