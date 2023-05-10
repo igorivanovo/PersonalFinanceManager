@@ -150,5 +150,18 @@ public class Categories implements Serializable {
         return sum;
     }
 
+    protected void saveBin(File file) throws IOException {
+        try (ObjectOutputStream objectInputStream = new ObjectOutputStream(new FileOutputStream(file))) {
+            objectInputStream.writeObject(this);
+        }
+    }
+
+    protected static Categories loadFromBinFile(File file) throws IOException, ClassNotFoundException {
+
+        try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(file))) {
+            return (Categories) inputStream.readObject();
+        }
+
+    }
 }
 
