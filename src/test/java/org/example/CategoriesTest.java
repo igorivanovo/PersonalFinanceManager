@@ -52,15 +52,13 @@ class CategoriesTest {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        JSONArray employeesJSONArray = (JSONArray) coderollsJSONObject.get("maxDayCategory");
-        JSONObject employeeJSONObject = (JSONObject) employeesJSONArray.get(0);
-
-        String ecpectedcategory = (String) employeeJSONObject.get("category");
+        JSONObject jsonObject = (JSONObject) coderollsJSONObject.get("maxDayCategory");
+        String ecpectedcategory = (String) jsonObject.get("category");
         String actualcategory = "финансы";
 
         Assertions.assertEquals(ecpectedcategory, actualcategory);
 
-        long ecpectedsum = (Long) employeeJSONObject.get("sum");
+        long ecpectedsum = (Long) jsonObject.get("sum");
         long actualsum = 500;
 
         Assertions.assertEquals(ecpectedsum, actualsum);

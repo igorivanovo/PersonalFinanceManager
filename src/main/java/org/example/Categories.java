@@ -73,7 +73,7 @@ public class Categories implements Serializable {
         }
     }
 
-    protected JSONArray max(String date, String time) {
+    protected JSONObject max(String date, String time) {
         Map<String, Integer> maxCategory = new HashMap<>();
         for (int i = 0; i < categoryes.length; i++) {
             maxCategory.put(categoryes[i], summa(categoryProduct, date, time, i));
@@ -92,20 +92,20 @@ public class Categories implements Serializable {
         jsonObject.put("category", maxKey);
         jsonObject.put("sum", max);
         jsonArray.add(jsonObject);
-        return jsonArray;
+        return jsonObject;
     }
 
     protected String maxCategory(String date) {
-        JSONArray jsonArrayDay = max(date, "day");
-        JSONArray jsonArrayMonth = max(date, "month");
-        JSONArray jsonArrayYear = max(date, "years");
-        JSONArray jsonArrayAll = max(date, "all");
+        JSONObject jsonObjectDay = max(date, "day");
+        JSONObject jsonObjectMonth = max(date, "month");
+        JSONObject jsonObjectYear = max(date, "years");
+        JSONObject jsonObjectAll = max(date, "all");
 
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("maxCategory", jsonArrayAll);
-        jsonObject.put("maxYearCategory", jsonArrayYear);
-        jsonObject.put("maxMonthCategory", jsonArrayMonth);
-        jsonObject.put("maxDayCategory", jsonArrayDay);
+        jsonObject.put("maxCategory", jsonObjectAll);
+        jsonObject.put("maxYearCategory", jsonObjectYear);
+        jsonObject.put("maxMonthCategory", jsonObjectMonth);
+        jsonObject.put("maxDayCategory", jsonObjectDay);
         String json = jsonObject.toJSONString();
         return json;
     }
