@@ -110,38 +110,38 @@ public class Categories implements Serializable {
         return json;
     }
 
-    protected Integer summa(int[][][][] category, String date, String time, int r) {
+    protected Integer summa(int[][][][] category, String date, String time, int cetegoryProduct) {
         int sum = 0;
-        int b = 5;
-        int c = 11;
-        int d = 30;
-        int a = 0;
-        int e = 0;
-        int o = 0;
+        int endYear = 5;
+        int endMonth = 11;
+        int endDay = 30;
+        int startYear = 0;
+        int startMonth = 0;
+        int startDay = 0;
         String[] dataInt = date.split("\\.");
         int years = Integer.parseInt(dataInt[0]) - 2020;
         int month = Integer.parseInt(dataInt[1]) - 1;
         int day = Integer.parseInt(dataInt[2]) - 1;
         switch (time) {
             case "day":
-                b = a = years;
-                e = c = month;
-                o = d = day;
+                startYear = endYear = years;
+                startMonth = endMonth = month;
+                startDay = endDay = day;
                 break;
             case "month":
-                b = a = years;
-                e = c = month;
+                endYear = startYear = years;
+                startMonth = endMonth = month;
                 break;
             case "years":
-                b = a = years;
+                endYear = startYear = years;
                 break;
             case "all":
                 break;
         }
-        for (int iii = r; iii <= r; iii++) {
-            for (int ii = a; ii <= b; ii++) {
-                for (int i = e; i <= c; i++) {
-                    for (int j = o; j <= d; j++) {
+        for (int iii = cetegoryProduct; iii <= cetegoryProduct; iii++) {
+            for (int ii = startYear; ii <= endYear; ii++) {
+                for (int i = startMonth; i <= endMonth; i++) {
+                    for (int j = startDay; j <= endDay; j++) {
                         sum = sum + category[iii][ii][i][j];
                     }
                 }
